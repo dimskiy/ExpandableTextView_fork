@@ -1,7 +1,7 @@
 apply plugin: 'android-library'
+apply plugin: 'maven-publish'
 
 android {
-
     compileSdkVersion project.ANDROID_COMPILE_SDK_VERSION
     buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
@@ -15,13 +15,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    afterEvaluate {
+        publishing {
+            publications {
+                release(MavenPublication) {
+                    from components.release
+                    groupId = 'com.github.dimskiy'
+                    artifactId = 'expandabletextview_fork'
+                    version = '0.1.5'
+                }
+            }
+        }
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     // to support annotations such as @NonNull
-    compile "com.android.support:support-annotations:${supportPackageVersion}"
+    implementation "com.android.support:support-annotations:${supportPackageVersion}"
 }
-
-// for maven central deployment
-apply from: 'https://raw.githubusercontent.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
