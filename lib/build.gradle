@@ -1,9 +1,10 @@
-apply plugin: 'android-library'
+//Changed by @dimskiy on 13 Apr '22
+
+apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion project.ANDROID_COMPILE_SDK_VERSION
-    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
     defaultConfig {
         minSdkVersion project.ANDROID_MIN_SDK_VERSION
@@ -33,5 +34,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // to support annotations such as @NonNull
-    implementation "com.android.support:support-annotations:${supportPackageVersion}"
+    implementation "androidx.annotation:annotation:$androidxAnnotationsVersion"
+    implementation "androidx.core:core-ktx:$androidxCoreVersion"
+    implementation "androidx.appcompat:appcompat:$androidxVersion"
 }

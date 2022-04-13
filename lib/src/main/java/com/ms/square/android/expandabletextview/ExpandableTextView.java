@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+//Changed by @dimskiy on 13 Apr '22
+
 package com.ms.square.android.expandabletextview;
 
 import android.annotation.TargetApi;
@@ -23,10 +25,6 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.SparseBooleanArray;
@@ -40,6 +38,11 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 
 public class ExpandableTextView extends LinearLayout implements View.OnClickListener {
 
@@ -321,11 +324,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private static Drawable getDrawable(@NonNull Context context, @DrawableRes int resId) {
         Resources resources = context.getResources();
-        if (isPostLolipop()) {
-            return resources.getDrawable(resId, context.getTheme());
-        } else {
-            return resources.getDrawable(resId);
-        }
+        return ResourcesCompat.getDrawable(resources, resId, context.getTheme());
     }
 
     private static int getRealTextViewHeight(@NonNull TextView textView) {

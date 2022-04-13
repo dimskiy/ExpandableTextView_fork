@@ -1,6 +1,3 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ms.square.android.expandabletextview">
+<!--Changed by @dimskiy on 13 Apr '22-->
 
-    <application/>
-
-</manifest>
+<manifest package="com.ms.square.android.expandabletextview"/>
